@@ -1,0 +1,29 @@
+name: Build and test
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET v8
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0
+    
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build
+      run: dotnet build -c Release --no-restore
+    
+    - name: Test
+      run: dotnet test -c Release --no-build --verbosity normal --filter "Category!=LongRunning"

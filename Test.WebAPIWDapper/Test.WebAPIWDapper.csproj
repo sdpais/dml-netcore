@@ -8,10 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove=".gitea\**" />
+    <Content Remove=".gitea\**" />
+    <EmbeddedResource Remove=".gitea\**" />
+    <None Remove=".gitea\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.dockerignore" Link=".dockerignore">
       <DependentUpon>$(DockerDefaultDockerfile)</DependentUpon>
     </None>
-    <None Include=".gitea\workflows\deploy-dev.yaml" />
   </ItemGroup>
 
   <ItemGroup>
