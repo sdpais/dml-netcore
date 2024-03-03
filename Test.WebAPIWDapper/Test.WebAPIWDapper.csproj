@@ -11,6 +11,7 @@
     <None Include="..\.dockerignore" Link=".dockerignore">
       <DependentUpon>$(DockerDefaultDockerfile)</DependentUpon>
     </None>
+    <None Include=".gitea\workflows\deploy-dev.yaml" />
   </ItemGroup>
 
   <ItemGroup>
