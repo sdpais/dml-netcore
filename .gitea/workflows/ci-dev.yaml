@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0
     
@@ -23,7 +23,7 @@ jobs:
       run: dotnet restore
     
     - name: Build
-      run: dotnet build -c Release --no-restore
+      run: dotnet build -c Debug --no-restore
     
     - name: Test
-      run: dotnet test -c Release --no-build --verbosity normal --filter "Category!=LongRunning"
+      run: dotnet test -c Debug --no-build --verbosity normal --filter "Category!=LongRunning"
