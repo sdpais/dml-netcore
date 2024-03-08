@@ -11,6 +11,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.WebAPIWDapper", "Test.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FE25BE04-7BCD-4F90-A154-F5ED1F413E3D}"
 	ProjectSection(SolutionItems) = preProject
+		.gitea\workflows\backend-deploy.yaml = .gitea\workflows\backend-deploy.yaml
+		.gitea\workflows\ci-dev.yaml = .gitea\workflows\ci-dev.yaml
+		.gitea\workflows\cicd-dev.yaml = .gitea\workflows\cicd-dev.yaml
+		.gitea\workflows\deploy-dev.yaml = .gitea\workflows\deploy-dev.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".gitea", ".gitea", "{06D7C825-8C71-4B97-ABAF-DEE741B0A808}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{57A203A3-E26E-466B-B8D7-A0ECFFBD8118}"
+	ProjectSection(SolutionItems) = preProject
+		.gitea\workflows\backend-deploy.yaml = .gitea\workflows\backend-deploy.yaml
 		.gitea\workflows\ci-dev.yaml = .gitea\workflows\ci-dev.yaml
 		.gitea\workflows\cicd-dev.yaml = .gitea\workflows\cicd-dev.yaml
 		.gitea\workflows\deploy-dev.yaml = .gitea\workflows\deploy-dev.yaml
@@ -37,6 +48,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{06D7C825-8C71-4B97-ABAF-DEE741B0A808} = {FE25BE04-7BCD-4F90-A154-F5ED1F413E3D}
+		{57A203A3-E26E-466B-B8D7-A0ECFFBD8118} = {06D7C825-8C71-4B97-ABAF-DEE741B0A808}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A6EF5D1-DC27-4E06-844E-1DD1D1892FAF}

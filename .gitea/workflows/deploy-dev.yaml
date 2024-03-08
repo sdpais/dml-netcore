@@ -3,29 +3,8 @@ run-name: ${{ gitea.actor }} is testing out Gitea Actions 🚀
 on: [push]
 
 jobs:
-  clear-cache:
-    runs-on: runner1
-    steps:
-      - name: Clear cache
-        uses: actions/github-script@v6
-        with:
-          script: |
-            console.log("About to clear")
-            const caches = await github.rest.actions.getActionsCacheList({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-            })
-            for (const cache of caches.data.actions_caches) {
-              console.log(cache)
-              github.rest.actions.deleteActionsCacheById({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                cache_id: cache.id,
-              })
-            }
-            console.log("Clear completed")
   Explore-Gitea-Actions:
-    runs-on: runner1
+    runs-on: runner2
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ gitea.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by Gitea!"
@@ -33,7 +12,11 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
-          path: master
+          repository: 'http://192.168.2.66:3000/sanjaypais/.NETCoreTest.WebServices.git'
+          ref: master
+          ssh-key: '-----BEGIN OPENSSH PRIVATE KEY-----
+
+          clean: 'true'
       - run: echo "💡 The ${{ gitea.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository

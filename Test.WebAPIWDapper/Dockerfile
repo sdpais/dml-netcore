@@ -7,19 +7,21 @@ EXPOSE 9200
 EXPOSE 9201
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
+ARG BUILD_CONFIGURATION=Debug
 WORKDIR /src
 COPY ["Test.WebAPIWDapper/Test.WebAPIWDapper.csproj", "Test.WebAPIWDapper/"]
 RUN dotnet restore "./Test.WebAPIWDapper/Test.WebAPIWDapper.csproj"
-COPY . .
+RUN ls
 WORKDIR "/src/Test.WebAPIWDapper"
+RUN ls
 RUN dotnet build "./Test.WebAPIWDapper.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Test.WebAPIWDapper.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+ARG BUILD_CONFIGURATION=Debug
+RUN dotnet publish "./Test.WebAPIWDapper.csproj" -c $BUILD_CONFIGURATION -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV ASPNETCORE_URLS=http://*:9201
 ENTRYPOINT ["dotnet", "Test.WebAPIWDapper.dll"]
