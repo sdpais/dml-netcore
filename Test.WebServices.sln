@@ -11,11 +11,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".gitea", ".gitea", "{06D7C8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{57A203A3-E26E-466B-B8D7-A0ECFFBD8118}"
 	ProjectSection(SolutionItems) = preProject
-		.gitea\workflows\backend-deploy-original.yaml = .gitea\workflows\backend-deploy-original.yaml
-		.gitea\workflows\backend-deploy.yaml = .gitea\workflows\backend-deploy.yaml
 		.gitea\workflows\ci-dev.yaml = .gitea\workflows\ci-dev.yaml
-		.gitea\workflows\cicd-dev.yaml = .gitea\workflows\cicd-dev.yaml
-		.gitea\workflows\deploy-dev.yaml = .gitea\workflows\deploy-dev.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Archive", "Archive", "{A79EAB00-375B-4795-BBCB-73971D6F752A}"
+	ProjectSection(SolutionItems) = preProject
+		.gitea\workflows\Archive\backend-deploy-original.yaml = .gitea\workflows\Archive\backend-deploy-original.yaml
+		.gitea\workflows\Archive\backend-deploy.yaml = .gitea\workflows\Archive\backend-deploy.yaml
+		.gitea\workflows\Archive\cicd-dev.yaml = .gitea\workflows\Archive\cicd-dev.yaml
+		.gitea\workflows\Archive\deploy-dev.yaml = .gitea\workflows\Archive\deploy-dev.yaml
+		.gitea\workflows\Archive\setup-node.yaml = .gitea\workflows\Archive\setup-node.yaml
 	EndProjectSection
 EndProject
 Global
@@ -35,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{06D7C825-8C71-4B97-ABAF-DEE741B0A808} = {FE25BE04-7BCD-4F90-A154-F5ED1F413E3D}
 		{57A203A3-E26E-466B-B8D7-A0ECFFBD8118} = {06D7C825-8C71-4B97-ABAF-DEE741B0A808}
+		{A79EAB00-375B-4795-BBCB-73971D6F752A} = {57A203A3-E26E-466B-B8D7-A0ECFFBD8118}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A6EF5D1-DC27-4E06-844E-1DD1D1892FAF}
