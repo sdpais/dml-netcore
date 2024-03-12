@@ -1,4 +1,4 @@
-name: Build and no test
+name: Build and no test and publish
 
 on:
 #  pull_request:
@@ -29,5 +29,12 @@ jobs:
     - name: Test
       run: dotnet test -c Debug --no-build --verbosity normal --filter "Category!=LongRunning"
 
-#    - name: Publish
-#      run: 
+    - name: Log into gitea Hub
+      uses: docker/login-action@v3
+      with:
+        registry: 192.168.2.66:3000/ 
+        username: ${{ secrets.USER_NAME }}
+        password: ${{ secrets.USER_PASSWORD }}
+
+    - name: Push the image to Gitea Hub
+      run: docker push http://192.168.2.66:3000/sanjaypais/webapidapper

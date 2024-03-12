@@ -1,7 +1,9 @@
 ﻿name: Gitea Actions Dev Deployment
 run-name: ${{ gitea.actor }} is testing out Gitea Actions 🚀
-on: [push]
-
+on: 
+  #[push]
+  pull_request:
+    branches: [ main ]  
 jobs:
   Explore-Gitea-Actions:
     runs-on: ubuntu-latest
