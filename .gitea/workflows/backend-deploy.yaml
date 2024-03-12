@@ -8,8 +8,27 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    
+    - name: Print working directory
+      run: pwd
+
+    - name: list directory
+      run: ls
+
+    - name: create directory src
+      run: mkdir /src
+
+    - name: list directory 2
+      run: ls
+    - name: change directory to src
+      run: cd /src
+    - name: create directory Test.WebAPIWDapper
+      run: mkdir Test.WebAPIWDapper
+    - name: change directory to Test.WebAPIWDapper
+      run: cd Test.WebAPIWDapper
+    - name: Print working directory
+      run: pwd
+     
+    - uses: actions/checkout@v3  
     - name: Build the Docker image
       working-directory: /src/Test.WebAPIWDapper
       run: docker build . -t sanjaypais/webapidapper:latest
