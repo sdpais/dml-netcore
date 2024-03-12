@@ -11,26 +11,27 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Build the Docker image
-      working-directory: Dockerized/Hello
-      run: docker build . -t docker-hub-username/container-name:latest
+      working-directory: Test.WebAPIWDapper/Hello
+      run: docker build . -t sanjaypais/webapidapper:latest
 
-    - name: Log into Docker Hub
+    - name: Log into gitea Hub
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        registry: 192.168.2.66:3000/ 
+        username: ${{ secrets.USER_NAME }}
+        password: ${{ secrets.USER_PASSWORD }}
 
     - name: Push the image to Docker Hub
-      run: docker push docker-hub-username/container-name
+      run: docker push sanjaypais/webapidapper
 
-    - name: Pull the image to VM
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        script: 
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/hello:latest
-          docker stop hello || true
-          docker rm hello || true
-          docker run -d -p 80:80 --name hello ${{ secrets.DOCKERHUB_USERNAME }}/hello:latest
+    # - name: Pull the image to VM
+    #   uses: appleboy/ssh-action@v1.0.0
+    #   with:
+    #     host: ${{ secrets.SSH_HOST }}
+    #     username: ${{ secrets.SSH_USERNAME }}
+    #     key: ${{ secrets.SSH_KEY }}
+    #     script: 
+    #       docker pull ${{ secrets.DOCKERHUB_USERNAME }}/hello:latest
+    #       docker stop hello || true
+    #       docker rm hello || true
+    #       docker run -d -p 80:80 --name hello ${{ secrets.DOCKERHUB_USERNAME }}/hello:latest
