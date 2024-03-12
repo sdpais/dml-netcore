@@ -1,6 +1,0 @@
-@Test.APINoTop_HostAddress = http://localhost:5105
-
-GET {{Test.APINoTop_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -27,3 +27,6 @@ jobs:
     
     - name: Test
       run: dotnet test -c Debug --no-build --verbosity normal --filter "Category!=LongRunning"
+
+    - name: Publish
+      run: 

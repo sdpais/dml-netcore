@@ -9,30 +9,16 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ gitea.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by Gitea!"
       - run: echo "🔎 The name of your branch is ${{ gitea.ref }} and your repository is ${{ gitea.repository }}."
-      # - name: Check out repository code
-      #   uses: actions/checkout@v4
- 
-      # - name: Set up Docker BuildX
-      #   uses: docker/setup-buildx-action@v2
-      #   with: # replace it with your local IP
-      #     config-inline: |
-      #       [registry."192.168.2.66:3000"] 
-      #         http = true
-      #         insecure = true            
-
-      # - name: Login to DockerHub
-      #   uses: docker/login-action@v2
-      #   with:
-      #     registry: 192.168.2.66:3000 # replace it with your local IP
-      #     username: gitea-action
-      #     password: U36hmeCnhcGvDDW
+      
 
       - name: Check out repository code attempt 2
         uses: actions/checkout@v2
         with:
-          registry: 192.168.2.66:3000 # replace it with your local IP
-          username: gitea-action
-          password: U36hmeCnhcGvDDW
+          registry: 192.168.2.66:3000/sanjaypais/webapi # replace it with your local IP
+          username: ${{ secrets.USER_NAME }}
+#          username: gitea-action
+          password: ${{ secrets.USER_PASSWORD }}
+#          password: U36hmeCnhcGvDDW
 
       - run: echo "💡 The ${{ gitea.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
