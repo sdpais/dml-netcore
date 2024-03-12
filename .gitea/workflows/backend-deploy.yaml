@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Build the Docker image
-      working-directory: Test.WebAPIWDapper/Hello
+      working-directory: /src/Test.WebAPIWDapper
       run: docker build . -t sanjaypais/webapidapper:latest
 
     - name: Log into gitea Hub
