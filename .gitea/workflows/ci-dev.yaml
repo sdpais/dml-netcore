@@ -1,7 +1,8 @@
 name: Build and no test
 
 on:
-  pull_request:
+#  pull_request:
+ push:
     branches: [ master ]
 
 jobs:
@@ -28,5 +29,5 @@ jobs:
     - name: Test
       run: dotnet test -c Debug --no-build --verbosity normal --filter "Category!=LongRunning"
 
-    - name: Publish
-      run: 
+#    - name: Publish
+#      run: 
