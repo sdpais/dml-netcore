@@ -1,0 +1,27 @@
+name: ci-build webAPIDapper
+
+on:
+#  pull_request:
+ push:
+    branches: [ master ]
+jobs:
+  buildx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+        # Add support for more platforms with QEMU (optional)
+        # https://github.com/docker/setup-qemu-action
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5 
+        with:
+          context: .
+          push: true
+          tags: http://192.168.2.66:3000/sanjaypais/.NETCoreTest.WebServices/packages/webapidapper:latest
