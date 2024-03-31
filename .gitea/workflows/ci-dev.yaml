@@ -78,7 +78,7 @@ jobs:
           http: true
           insecure: true
           #file: .NETCoreTest.WebServices/Dockerfile
-          #file: Test.WebAPIWDapper/Dockerfile
+          file: Test.WebAPIWDapper/Dockerfile
           context: .
           push: true
           tags: sanjaypais/webapidapper:latest
