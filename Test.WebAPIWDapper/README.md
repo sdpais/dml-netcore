@@ -1,2 +1,2 @@
 # webapidapper
-.NER Core WebAPI using Dapper
+.NET Core WebAPI using Dapper

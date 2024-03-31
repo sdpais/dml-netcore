@@ -12,6 +12,7 @@ WORKDIR /src
 COPY ["Test.WebAPIWDapper/Test.WebAPIWDapper.csproj", "Test.WebAPIWDapper/"]
 RUN dotnet restore "./Test.WebAPIWDapper/Test.WebAPIWDapper.csproj"
 RUN ls
+COPY . .
 WORKDIR "/src/Test.WebAPIWDapper"
 RUN ls
 RUN dotnet build "./Test.WebAPIWDapper.csproj" -c $BUILD_CONFIGURATION -o /app/build
