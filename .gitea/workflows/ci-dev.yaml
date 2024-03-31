@@ -83,6 +83,7 @@ jobs:
           file: Test.WebAPIWDapper/Dockerfile
           context: .
           push: true
-          tags: gitea:3000/sanjaypais/.NETCoreTest.WebServices/Test.WebAPIWDapper:latest
+          tags: gitea:3000/sanjaypais/${{ env.BRANCH }}
+#          tags: gitea:3000/sanjaypais/.NETCoreTest.WebServices/Test.WebAPIWDapper:latest
 #          tags: sanjaypais/webapidapper:latest
 #          working-directory: /home/sanjay/act_runner/cache
