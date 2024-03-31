@@ -1,9 +1,9 @@
 name: ci-build webAPIDapper
 
 on:
-#  pull_request:
- push:
-    branches: [ master ]
+ pull_request:
+# push:
+#    branches: [ master ]
 jobs:
   buildx:
     runs-on: ubuntu-latest
