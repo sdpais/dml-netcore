@@ -77,7 +77,8 @@ jobs:
           registry: gitea:3000
           http: true
           insecure: true
-          file: .NETCoreTest.WebServices/Dockerfile
+          #file: .NETCoreTest.WebServices/Dockerfile
+          #file: Test.WebAPIWDapper/Dockerfile
           push: true
           tags: sanjaypais/webapidapper:latest
 #          working-directory: /home/sanjay/act_runner/cache
