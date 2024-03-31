@@ -17,11 +17,13 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+        working-directory: /home/sanjay/act_runner/cache
       
 
     
     
     - name: Restore dependencies
+      working-directory: /home/sanjay/act_runner/cache
       run: dotnet restore
     
     - name: Build
