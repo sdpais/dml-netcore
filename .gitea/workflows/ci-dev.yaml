@@ -14,7 +14,8 @@ jobs:
 
     
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
     
@@ -44,8 +45,17 @@ jobs:
     needs: build
     if: gitea.ref == 'refs/heads/master'
     steps:
-      - uses: actions/checkout@v4
-      #    https://github.com/actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+    
+      - name: Restore dependencies
+        run: dotnet restore
+    
+      - name: Build
+        run: dotnet build -c Debug --no-restore
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       #    https://github.com/docker/setup-buildx-action@v3
