@@ -83,6 +83,6 @@ jobs:
           file: Test.WebAPIWDapper/Dockerfile
           context: .
           push: true
-          tags: sanjaypais/dotnetimages:latest
+          tags: sanjaypais/.NETCoreTest.WebServices/Test.WebAPIWDapper:latest
 #          tags: sanjaypais/webapidapper:latest
 #          working-directory: /home/sanjay/act_runner/cache
