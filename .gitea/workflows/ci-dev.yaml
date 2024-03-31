@@ -77,6 +77,8 @@ jobs:
           registry: gitea:3000
           http: true
           insecure: true
+          username: ${{ secrets.USER_NAME }}
+          password: ${{ secrets.USER_PASSWORD }}
           #file: .NETCoreTest.WebServices/Dockerfile
           file: Test.WebAPIWDapper/Dockerfile
           context: .
