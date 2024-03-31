@@ -24,4 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: http://192.168.2.66:3000/sanjaypais/.NETCoreTest.WebServices/packages/webapidapper:latest
+          tags: http://gitea:3000/sanjaypais/.NETCoreTest.WebServices/packages/webapidapper:latest
