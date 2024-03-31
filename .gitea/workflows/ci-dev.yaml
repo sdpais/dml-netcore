@@ -12,25 +12,24 @@ jobs:
     env:
       DOTNET_INSTALL_DIR: "/usr/bin/dotnet"
 
+    
     steps:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+      
 
-    # no need to setup dotnet, dotnet is already installed on the runner
-    # - name: Setup .NET
-    #   uses: actions/setup-dotnet@v4
-    #   with:
-    #     dotnet-version: 8.0
     
     
     - name: Restore dependencies
       run: dotnet restore
     
     - name: Build
+      working-directory: /home/sanjay/act_runner/cache
       run: dotnet build -c Debug --no-restore
     
     - name: Test
+      working-directory: /home/sanjay/act_runner/cache
       run: dotnet test -c Debug --no-build --verbosity normal --filter "Category!=LongRunning"
 
     # - name: Log into gitea Hub
@@ -59,6 +58,7 @@ jobs:
           registry: gitea:3000
           http: true
           insecure: true
+          working-directory: /home/sanjay/act_runner/cache
 #          username: ${{ secrets.USER_NAME }}
 #          password: ${{ secrets.USER_PASSWORD }}
 #          config-inline: |
@@ -75,3 +75,4 @@ jobs:
           file: .NETCoreTest.WebServices/Dockerfile
           push: true
           tags: sanjaypais/webapidapper:latest
+          working-directory: /home/sanjay/act_runner/cache
