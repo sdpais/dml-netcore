@@ -83,5 +83,6 @@ jobs:
           file: Test.WebAPIWDapper/Dockerfile
           context: .
           push: true
+          tags: latest
 #          tags: sanjaypais/webapidapper:latest
 #          working-directory: /home/sanjay/act_runner/cache
