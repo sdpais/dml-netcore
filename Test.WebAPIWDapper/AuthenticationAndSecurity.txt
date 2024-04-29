@@ -1,0 +1,11 @@
+﻿https://stackoverflow.com/questions/216542/how-do-i-uniquely-identify-computers-visiting-my-web-site
+UUIDS
+BrowserID: Unique id generated from the browsers user agent string. Browser|BrowserVersion|OS|OSVersion|Processor|MozzilaMajorVersion|GeckoMajorVersion
+ComputerID: Generated from users IP Address and HTTPS session key. getISP(requestIP)|getHTTPSClientKey()
+FingerPrintID: JavaScript based fingerprinting based on a modified fingerprint.js. FingerPrint.get()
+SessionID: Random key generated when user 1st visits site. BrowserID|ComputerID|randombytes(256)
+GoogleID: Generated from __utma cookie. getCookie(__utma).uniqueid
+
+
+Use JWT Access and Refresh Tokens
+https://www.c-sharpcorner.com/article/jwt-token-authentication-using-the-net-core-6-web-api/

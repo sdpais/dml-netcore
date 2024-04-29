@@ -1,0 +1,18 @@
+﻿Add exception handling and exception viewing
+https://dev.to/sardarmudassaralikhan/exception-handling-in-aspnet-core-web-api-13no
+https://medium.com/@shubhadeepchat/global-exception-handling-in-net-core-6-0-web-api-application-7e4a51c73fa7
+
+How to capture and view exceptions?
+
+Add excryption for PII
+
+Add Redis
+
+Configs
+Move config out of app settings
+or
+Use Strongly Typed settings
+https://thoughtcopy.com/options-pattern-in-aspnet-core-introduction
+
+build key rotation
+

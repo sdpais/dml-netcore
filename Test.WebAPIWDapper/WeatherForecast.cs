@@ -1,4 +1,4 @@
-namespace WebAPIDapper;
+namespace WebAPIWDapper;
 
 public class WeatherForecast
 {

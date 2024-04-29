@@ -1,6 +1,9 @@
-using  WebAPIDapper.Services;
+using  WebAPIWDapper.Services;
 using Dapper;
 using Prometheus;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +20,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IDbService, DbService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
+//adding authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
+        options => builder.Configuration.Bind("JwtSettings", options))
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+        options => builder.Configuration.Bind("CookieSettings", options));
 
 var app = builder.Build();
 
@@ -40,5 +50,8 @@ app.MapControllers();
 
 //adding the Metric Endpoint
 app.UseMetricServer();
+
+//auth
+app.UseAuthentication();
 
 app.Run();

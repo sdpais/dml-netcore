@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using WebAPIDapper;
+using WebAPIWDapper;
 
-namespace WebAPIDapper.Controllers
+namespace WebAPIWDapper.Controllers
 {
     [ApiController]
     [Route("[controller]")]

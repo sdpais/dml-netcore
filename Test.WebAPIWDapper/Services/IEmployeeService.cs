@@ -1,6 +1,6 @@
-using WebAPIDapper.Models;
+using WebAPIWDapper.Models;
 
-namespace WebAPIDapper.Services;
+namespace WebAPIWDapper.Services;
 
 public interface IEmployeeService
 {

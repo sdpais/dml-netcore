@@ -1,4 +1,4 @@
-namespace WebAPIDapper.Models;
+namespace WebAPIWDapper.Models;
 
 public class Employee
 {

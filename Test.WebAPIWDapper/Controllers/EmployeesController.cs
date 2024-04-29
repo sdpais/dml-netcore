@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using WebAPIDapper.Models;
-using WebAPIDapper.Services;
+using WebAPIWDapper.Models;
+using WebAPIWDapper.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPIDapper.Controllers;
+namespace WebAPIWDapper.Controllers;
 
 [ApiController]
 [Route("[controller]")]

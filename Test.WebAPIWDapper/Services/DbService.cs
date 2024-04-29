@@ -4,7 +4,7 @@ using Dapper;
 using Npgsql;
 
 
-namespace WebAPIDapper.Services;
+namespace WebAPIWDapper.Services;
 
 
 public class DbService : IDbService
