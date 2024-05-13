@@ -43,6 +43,12 @@ namespace WebAPIWDapper.Controllers
             }
             return Unauthorized();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+
         [HttpPost("login")]
         public IActionResult Login([FromBody] Login? user)
         {
@@ -56,6 +62,9 @@ namespace WebAPIWDapper.Controllers
                 var result = _loginService.GetLogin(user.UserName);
                 if (result is not null)
                 {
+                    // how do i extract the password from the result and compare it with the user.Password
+
+
                     //var userFromResult = (Login)result;
                     //if(user.Password == result)
                     var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetValue<string>("JWT:Secret")));

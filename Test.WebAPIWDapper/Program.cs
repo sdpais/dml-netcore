@@ -37,6 +37,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// create code for encryption and decryption of values
+
+
 //adding metrics related to HTTP
 app.UseHttpMetrics(options =>
 {
