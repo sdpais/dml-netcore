@@ -1,13 +1,12 @@
 ﻿using WebAPIWDapper.Services;
 
-namespace Test.WebAPIWDapper.BusinessLogic
+namespace WebAPIWDapper.BusinessLogic
 {
-    public class EncryptionService
+    public class EncryptionBLService : BusinessLogicBLBase
     {
-        private readonly IDbService _dbService;
-        public EncryptionService(IConfiguration configuration)
+        
+        public EncryptionBLService(IConfiguration configuration) : base(configuration)
         {
-            _dbService = new DbService(configuration);
         }
         public async Task<bool> LoadAndCacheEncryptionKeys()
         {

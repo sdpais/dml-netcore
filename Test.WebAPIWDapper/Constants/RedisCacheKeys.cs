@@ -1,4 +1,4 @@
-﻿namespace Test.WebAPIWDapper.Constants
+﻿namespace WebAPIWDapper.Constants
 {
     /// <summary>
     /// An attempt to build out a best practice with naming conventions for Redis cache keys
@@ -8,7 +8,8 @@
     public class RedisCacheKeys
     {
         //add a constant string for the prefix of the key
-        public const string EncryptionKey = "EncryptionKey";
+        public const string EncryptionKeys = "EncryptionKeys";
+        public const string UserAuthTokens = "UserAuthTokens";
 
     }
 }

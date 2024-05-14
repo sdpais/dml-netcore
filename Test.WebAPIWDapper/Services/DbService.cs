@@ -16,15 +16,24 @@ public class DbService : IDbService
         _db = new NpgsqlConnection(configuration.GetConnectionString("Employeedb"));
     }
 
-    public async Task<T> GetAsync<T>(string command, object parms)
+    //public async Task<T> GetAsync<T>(string command, object parms)
+    //{
+    //    T result;
+
+    //    result = (await _db.QueryAsync<T>(command, parms).ConfigureAwait(false)).FirstOrDefault();
+
+    //    return result;
+
+    //}
+    public async Task<T?> GetAsync<T>(string command, object parms) where T : class
     {
-        T result;
+        IEnumerable<T> result;
 
-        result = (await _db.QueryAsync<T>(command, parms).ConfigureAwait(false)).FirstOrDefault();
+        result = await _db.QueryAsync<T>(command, parms).ConfigureAwait(false);
 
-        return result;
-
+        return result.FirstOrDefault();
     }
+
 
     public async Task<List<T>> GetAll<T>(string command, object parms)
     {

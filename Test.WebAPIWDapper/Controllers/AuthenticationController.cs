@@ -3,9 +3,11 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Test.WebAPIWDapper.BusinessLogic;
 using Test.WebAPIWDapper.Services;
 using WebAPIWDapper.Models;
 using WebAPIWDapper.Services;
+using WebAPIWDapper.Constants;
 
 namespace WebAPIWDapper.Controllers
 {
@@ -50,7 +52,7 @@ namespace WebAPIWDapper.Controllers
         /// <returns></returns>
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] Login? user)
+        public async Task<IActionResult> Login([FromBody] Login? user)
         {
             if (user is null || user.UserName is null || user.Password is null)
             {
@@ -58,25 +60,15 @@ namespace WebAPIWDapper.Controllers
             }
             if(user is not null)
             {
-                ILoginService _loginService = new LoginService(new DbService(_config));
-                var result = _loginService.GetLogin(user.UserName);
-                if (result is not null)
+                AuthenticationBLService _authenticationBLService = new AuthenticationBLService(_config);
+                JWTToken?  authToken = await _authenticationBLService.AuthenticateUser(user);
+                if (authToken == null || authToken.Token == null)
                 {
-                    // how do i extract the password from the result and compare it with the user.Password
-
-
-                    //var userFromResult = (Login)result;
-                    //if(user.Password == result)
-                    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetValue<string>("JWT:Secret")));
-                    var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-                    var tokeOptions = new JwtSecurityToken(issuer: _config.GetValue<string>("JWT:ValidIssuer"), audience: _config.GetValue<string>("JWT:ValidAudience"), claims: new List<Claim>(), expires: DateTime.Now.AddMinutes(6), signingCredentials: signinCredentials);
-                    var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                    _redisCacheHandler.StringSetAsync(user.UserName + ".Token", tokenString, new TimeSpan(0, 0, 60));
-                    return Ok(new JWTToken
-                    {
-                        Token = tokenString
-                    });
+                    return Unauthorized();
                 }
+                _redisCacheHandler.StringSetAsync(RedisCacheKeys.UserAuthTokens + user.UserName + ".Token", authToken.Token, new TimeSpan(0, 0, 60));
+                return Ok(authToken);
+
             }
             return Unauthorized();
         }
