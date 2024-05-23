@@ -3,7 +3,7 @@ using WebAPIWDapper.Models;
 
 namespace WebAPIWDapper.Services;
 
-public interface IEncryptionDecryptionService
+public interface ICryptographicService
 {
     Task<string> Encrypt(string unencrypted, string keyString);
     Task<string> Encrypt(string unencrypted, byte[] keyArray);

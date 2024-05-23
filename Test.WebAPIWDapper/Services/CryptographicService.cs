@@ -7,11 +7,11 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace WebAPIWDapper.Services;
 
-public class EncryptionDecryptionService : IEncryptionDecryptionService
+public class CryptographicService : ICryptographicService
 {
     private readonly IDbService _dbService;
 
-    public EncryptionDecryptionService(IDbService dbService)
+    public CryptographicService(IDbService dbService)
     {
         _dbService = dbService;
     }

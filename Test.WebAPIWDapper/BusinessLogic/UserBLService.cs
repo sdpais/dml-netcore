@@ -17,7 +17,7 @@ namespace WebAPIWDapper.BusinessLogic
         public async Task<bool?> RegisterUser(Login user)
         {
             ILoginService _loginService = new LoginService(_dbService);
-            EncryptionDecryptionService encryptionDecryptionService = new EncryptionDecryptionService(_dbService);
+            CryptographicService encryptionDecryptionService = new CryptographicService(_dbService);
             EncryptionBLService encryptionBLService = new EncryptionBLService(_configuration);
             string encryptionKeyJson = await encryptionBLService.GetRandomEncryptionKeyValueFromCache();
             EncryptionKey? encryptionKey = JsonConvert.DeserializeObject<EncryptionKey>(encryptionKeyJson);
