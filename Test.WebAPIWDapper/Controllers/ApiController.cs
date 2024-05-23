@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace Test.WebAPIWDapper.Controllers
+namespace WebAPIWDapper.Controllers
 {
     public class ApiController : Controller
     {

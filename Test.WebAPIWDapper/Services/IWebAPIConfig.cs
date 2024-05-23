@@ -1,6 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 
-namespace Test.WebAPIWDapper.Services
+namespace WebAPIWDapper.Services
 {
     public interface IWebAPIConfig
     {

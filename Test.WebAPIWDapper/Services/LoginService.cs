@@ -27,17 +27,17 @@ public class LoginService : ILoginService
         var loginList = await _dbService.GetAll<Login>("SELECT * FROM public.login", new { });
         return loginList;
     }
-
-    public async Task<List<Login>> GetLoginsByUserName(string userName)
+    public async Task<List<Login>> GetLogins(string userName)
     {
-        List<Login> loginList = await _dbService.GetAll<Login>("SELECT * FROM public.login where username=@username", new { userName });
-        return loginList;
+        List<Login> logins = await _dbService.GetAll<Login>("SELECT TOP 1 * FROM public.login where username=@username", new { userName });
+        return logins;
     }
-    public async Task<Login> GetLoginByUserName(string userName)
+    public async Task<Login?> GetLogin(string userName)
     {
-        Login login = await _dbService.GetAsync<Login>("SELECT TOP 1 * FROM public.login where username=@username", new {userName});
+        Login? login = await _dbService.GetAsync<Login>("SELECT TOP 1 * FROM public.login where username=@username", new { userName });
         return login;
     }
+  
 
     public async Task<Login> UpdateLogin(Login login)
     {

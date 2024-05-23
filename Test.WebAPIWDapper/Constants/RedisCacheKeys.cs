@@ -9,6 +9,7 @@
     {
         //add a constant string for the prefix of the key
         public const string EncryptionKeys = "EncryptionKeys";
+        public const string EncryptionKeyList = "EncryptionKeyList";
         public const string UserAuthTokens = "UserAuthTokens";
 
     }

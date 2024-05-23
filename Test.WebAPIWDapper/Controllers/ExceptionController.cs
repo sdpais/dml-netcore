@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace Test.WebAPIWDapper.Controllers
+namespace WebAPIWDapper.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

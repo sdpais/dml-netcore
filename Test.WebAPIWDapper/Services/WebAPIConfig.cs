@@ -3,7 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics.Eventing.Reader;
 using System.Text;
 
-namespace Test.WebAPIWDapper.Services
+namespace WebAPIWDapper.Services
 {
     public class WebAPIConfig : IWebAPIConfig
     {

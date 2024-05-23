@@ -1,6 +1,6 @@
 ﻿using StackExchange.Redis;
 
-namespace Test.WebAPIWDapper.Services
+namespace WebAPIWDapper.Services
 {
     public interface IRedisDbProvider : IDisposable
     {

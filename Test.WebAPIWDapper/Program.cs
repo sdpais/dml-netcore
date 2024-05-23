@@ -3,11 +3,12 @@ using Dapper;
 using Prometheus;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using WebAPIWDapper.BusinessLogic;
 
 
 
 var builder = WebApplication.CreateBuilder(args);
-
+EncryptionBLService encryptionBLService = new EncryptionBLService(builder.Configuration);
 //Dapper
 DefaultTypeMap.MatchNamesWithUnderscores = true;
 
@@ -56,5 +57,5 @@ app.UseMetricServer();
 
 //auth
 app.UseAuthentication();
-
+await encryptionBLService.LoadAndCacheEncryptionKeys();
 app.Run();

@@ -15,4 +15,9 @@ Use Strongly Typed settings
 https://thoughtcopy.com/options-pattern-in-aspnet-core-introduction
 
 build key rotation
+create or use a task scheduler
+using the task schedule generate new keys for expired keys
+using the task schedule replace data encrypted with expired keys
+
+
 

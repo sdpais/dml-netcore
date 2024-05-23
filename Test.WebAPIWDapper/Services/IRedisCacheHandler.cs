@@ -1,4 +1,4 @@
-﻿namespace Test.WebAPIWDapper.Services
+﻿namespace WebAPIWDapper.Services
 {
     public interface IRedisCacheHandler
     {

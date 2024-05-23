@@ -1,22 +1,88 @@
-﻿using WebAPIWDapper.Services;
-
+﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using System.Runtime.InteropServices;
+using WebAPIWDapper.Services;
+using WebAPIWDapper.Constants;
+using WebAPIWDapper.Models;
+using WebAPIWDapper.Services;
+using Newtonsoft.Json;
 namespace WebAPIWDapper.BusinessLogic
 {
     public class EncryptionBLService : BusinessLogicBLBase
     {
-        
+        private readonly IRedisCacheHandler _redisCacheHandler;
         public EncryptionBLService(IConfiguration configuration) : base(configuration)
         {
+            _redisCacheHandler = new RedisCacheHandler(configuration);
         }
         public async Task<bool> LoadAndCacheEncryptionKeys()
         {
             // get all active keys
             EncryptionKeysService encryptionKeysService = new EncryptionKeysService(_dbService);
             var keys = await encryptionKeysService.GetAllActiveKeys();
+            if (keys.Count == 0)
+            {
+                await RandomlyGenerate5Keys();
+                keys = await encryptionKeysService.GetAllActiveKeys();
+            }
             //save them into the RedisCache
-
+            Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
+            int index = 0;
+            string cachekey;
+            foreach(EncryptionKey key in keys)
+            {
+                //TODO: fix the timespan, clean up how the key is defined
+                index++;
+                cachekey = RedisCacheKeys.EncryptionKeys + "-" + key.Id;
+                keyValuePairs.Add(index, cachekey);
+                await _redisCacheHandler.StringSetAsync(cachekey, JsonConvert.SerializeObject(key), new TimeSpan(0,5,5));
+            }
+            //save the kist of encryptionkeys in the cache
+            await _redisCacheHandler.StringSetAsync(RedisCacheKeys.EncryptionKeyList, Newtonsoft.Json.JsonConvert.SerializeObject(keyValuePairs), new TimeSpan(0, 5, 5));
+            //wonder if this should be a scheduled task
+            //check if any keys are expiring in the next x days and generate new key to replace
             //return true if successful
             return true;
+        }
+        public async Task<string> GetRandomEncryptionKeyValueFromCache()
+        {
+            //get the list of keys from the cache
+            string keyList = await _redisCacheHandler.StringGetAsync(RedisCacheKeys.EncryptionKeyList);
+            if (keyList is null)
+            {
+                await LoadAndCacheEncryptionKeys();
+                keyList = await _redisCacheHandler.StringGetAsync(RedisCacheKeys.EncryptionKeyList);
+            }
+            Dictionary<int, string> keyValuePairs = JsonConvert.DeserializeObject<Dictionary<int, string>>(keyList);
+            //get a random key from the list
+            int randomkey = GetRandomNumber();
+            string cachekey = keyValuePairs[randomkey];
+            string redisCacheKey = RedisCacheKeys.EncryptionKeys + "-" + cachekey;
+            string key = await _redisCacheHandler.StringGetAsync(redisCacheKey);
+            //return the key
+            return key;
+        }
+        private async Task<bool> RandomlyGenerate5Keys()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                await RandomlyGenerateAndInsertKey();
+            }
+            return true;
+        }
+        private async Task<bool> RandomlyGenerateAndInsertKey()
+        {
+            //TODO: Improve encryption keys using https://learn.microsoft.com/en-us/dotnet/standard/security/generating-keys-for-encryption-and-decryption
+            EncryptionKeysService encryptionKeysService = new EncryptionKeysService(_dbService);
+            EncryptionKey encryptionKey = new EncryptionKey();
+            encryptionKey.KeyString = new Guid().ToString();
+            encryptionKey.ExpiryDate = DateTime.Now.AddDays(GetRandomNumber());
+            await encryptionKeysService.AddKey(encryptionKey);
+            return true;
+        }
+        private int GetRandomNumber()
+        {
+            var random = new Random();
+            return random.Next(10);
         }
             
     }

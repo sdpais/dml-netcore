@@ -3,8 +3,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Test.WebAPIWDapper.BusinessLogic;
-using Test.WebAPIWDapper.Services;
+using WebAPIWDapper.BusinessLogic;
+using WebAPIWDapper.Services;
 using WebAPIWDapper.Models;
 using WebAPIWDapper.Services;
 using WebAPIWDapper.Constants;
@@ -81,8 +81,8 @@ namespace WebAPIWDapper.Controllers
             }
             if (user is not null)
             {
-                ILoginService _loginService = new LoginService(new DbService(_config));
-                var result =  await _loginService.CreateLogin(user);
+                UserBLService userBLService = new UserBLService(_config);
+                var result =  await userBLService.RegisterUser(user);
                 return Ok(result);
             }
 

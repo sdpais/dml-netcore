@@ -4,7 +4,7 @@ using System.Runtime.Intrinsics.X86;
 using Microsoft.Extensions.Configuration;
 //source
 //https://www.c-sharpcorner.com/article/jwt-token-authentication-using-the-net-core-6-web-api/
-namespace Test.WebAPIWDapper.Services
+namespace WebAPIWDapper.Services
 {
     public class RedisCacheHandler : IRedisCacheHandler
     {

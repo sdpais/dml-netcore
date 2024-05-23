@@ -18,7 +18,7 @@ public class EncryptionKeysService : IEncryptionKeysService
 
     public async Task<List<EncryptionKey>> GetAllActiveKeys()
     {
-        List<EncryptionKey> EncryptionKeyList = await _dbService.GetAll<EncryptionKey>("SELECT * FROM public.EncryptionKeys WHERE ExpiryDate>=getdate()");
+        List<EncryptionKey> EncryptionKeyList = await _dbService.GetAll<EncryptionKey>("SELECT * FROM public.EncryptionKeys WHERE ExpiryDate>=now()");
         return EncryptionKeyList;
     }
     public async Task<bool> AddKey(EncryptionKey encryptionKey)

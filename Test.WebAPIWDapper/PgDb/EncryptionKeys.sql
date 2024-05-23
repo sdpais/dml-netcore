@@ -1,5 +1,5 @@
 CREATE TABLE  IF NOT EXISTS EncryptionKeys (
-    Id INT PRIMARY KEY NOT NULL, 
+    Id serial PRIMARY KEY NOT NULL, 
     KeyString Varchar (256) NOT NULL,
     ExpiryDate Date,
     ReplacedById INT NULL, 

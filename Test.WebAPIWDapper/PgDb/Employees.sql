@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Employees (
-    Id INT PRIMARY KEY NOT NULL, 
+    Id serial PRIMARY KEY NOT NULL, 
     Name Varchar (256) NOT NULL,
     Age INT,
     AddressId INT,
