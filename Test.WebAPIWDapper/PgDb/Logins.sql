@@ -3,7 +3,7 @@ CREATE TABLE  IF NOT EXISTS  Logins (
     UserName Varchar (256) NOT NULL,
     Password Varchar (256) NOT NULL,
     EncryptionKeyId INT NOT NULL,
-    EmployeeId INT NOT NULL
+    EmployeeId INT NULL
 );
 
 ALTER TABLE Logins

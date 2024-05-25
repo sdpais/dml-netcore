@@ -8,9 +8,9 @@ using WebAPIWDapper.Services;
 using Newtonsoft.Json;
 namespace WebAPIWDapper.BusinessLogic
 {
-    public class UserBLService : BusinessLogicBLBase
+    public class LoginBLService : BusinessLogicBLBase
     {
-        public UserBLService(IConfiguration configuration) : base(configuration)
+        public LoginBLService(IConfiguration configuration) : base(configuration)
         {
 
         }
@@ -18,7 +18,7 @@ namespace WebAPIWDapper.BusinessLogic
         {
             ILoginService _loginService = new LoginService(_dbService);
             CryptographicService encryptionDecryptionService = new CryptographicService(_dbService);
-            EncryptionBLService encryptionBLService = new EncryptionBLService(_configuration);
+            CryptographicBLService encryptionBLService = new CryptographicBLService(_configuration);
             string encryptionKeyJson = await encryptionBLService.GetRandomEncryptionKeyValueFromCache();
             EncryptionKey? encryptionKey = JsonConvert.DeserializeObject<EncryptionKey>(encryptionKeyJson);
             if (encryptionKey is null || encryptionKey.KeyString is null || user.Password is null)
@@ -26,7 +26,7 @@ namespace WebAPIWDapper.BusinessLogic
                 return false;
             }
             user.EncryptionKeyId = encryptionKey.Id;
-            user.Password = await encryptionDecryptionService.Encrypt(user.Password, encryptionKey.KeyString);
+            user.Password = await encryptionDecryptionService.CreateHash(user.Password, encryptionKey.KeyString);
             var result = await _loginService.CreateLogin(user);
             return result;
         }

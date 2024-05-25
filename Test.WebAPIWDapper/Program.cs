@@ -8,7 +8,7 @@ using WebAPIWDapper.BusinessLogic;
 
 
 var builder = WebApplication.CreateBuilder(args);
-EncryptionBLService encryptionBLService = new EncryptionBLService(builder.Configuration);
+CryptographicBLService encryptionBLService = new CryptographicBLService(builder.Configuration);
 //Dapper
 DefaultTypeMap.MatchNamesWithUnderscores = true;
 

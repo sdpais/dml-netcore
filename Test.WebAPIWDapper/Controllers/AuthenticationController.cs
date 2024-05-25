@@ -81,7 +81,7 @@ namespace WebAPIWDapper.Controllers
             }
             if (user is not null)
             {
-                UserBLService userBLService = new UserBLService(_config);
+                LoginBLService userBLService = new LoginBLService(_config);
                 var result =  await userBLService.RegisterUser(user);
                 return Ok(result);
             }

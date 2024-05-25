@@ -5,5 +5,11 @@ CREATE TABLE IF NOT EXISTS Addresses (
     City Varchar (256) NOT NULL,
     Province Varchar(50) NOT NULL,
     Country Varchar(50) NOT NULL,
+    EmployeeId INT NOT NULL,
     CONSTRAINT Pk_Addresses_id PRIMARY KEY(Id)
 );
+
+ALTER TABLE Addresses
+ADD CONSTRAINT FK_Addresses_Employees_Id
+FOREIGN KEY (EmployeeId)
+REFERENCES Employees(Id);

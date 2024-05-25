@@ -16,21 +16,21 @@ public class EmployeeService : IEmployeeService
     {
         var result =
             await _dbService.EditData(
-                "INSERT INTO public.employee (id,name, age, address, mobile_number) VALUES (@Id, @Name, @Age, @Address, @MobileNumber)",
+                "INSERT INTO public.employees (id,name, age, mobile_number, encryptionkeyid, ssn, createddate) VALUES (@Id, @Name, @Age, @MobileNumber, @encryptionkeyid, @ssn, @createddate)",
                 employee);
         return true;
     }
 
     public async Task<List<Employee>> GetEmployeeList()
     {
-        var employeeList = await _dbService.GetAll<Employee>("SELECT * FROM public.employee", new { });
+        var employeeList = await _dbService.GetAll<Employee>("SELECT * FROM public.employees", new { });
         return employeeList;
     }
 
 
     public async Task<Employee> GetEmployee(int id)
     {
-        var employeeList = await _dbService.GetAsync<Employee>("SELECT * FROM public.employee where id=@id", new {id});
+        var employeeList = await _dbService.GetAsync<Employee>("SELECT * FROM public.employees where id=@id", new {id});
         return employeeList;
     }
 
@@ -38,14 +38,14 @@ public class EmployeeService : IEmployeeService
     {
         var updateEmployee =
             await _dbService.EditData(
-                "Update public.employee SET name=@Name, age=@Age, address=@Address, mobile_number=@MobileNumber WHERE id=@Id",
+                "Update public.employees SET name=@Name, age=@Age, mobile_number=@MobileNumber, encryptionkeyid=@encryptionkeyid, ssn=@ssn, createddate=@createddate WHERE id=@Id",
                 employee);
         return employee;
     }
 
     public async Task<bool> DeleteEmployee(int id)
     {
-        var deleteEmployee = await _dbService.EditData("DELETE FROM public.employee WHERE id=@Id", new {id});
+        var deleteEmployee = await _dbService.EditData("DELETE FROM public.employees WHERE id=@Id", new {id});
         return true;
     }
 }

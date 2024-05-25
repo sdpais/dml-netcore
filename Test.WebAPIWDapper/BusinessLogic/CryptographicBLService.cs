@@ -3,14 +3,14 @@ using System.Runtime.InteropServices;
 using WebAPIWDapper.Services;
 using WebAPIWDapper.Constants;
 using WebAPIWDapper.Models;
-using WebAPIWDapper.Services;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 namespace WebAPIWDapper.BusinessLogic
 {
-    public class EncryptionBLService : BusinessLogicBLBase
+    public class CryptographicBLService : BusinessLogicBLBase
     {
         private readonly IRedisCacheHandler _redisCacheHandler;
-        public EncryptionBLService(IConfiguration configuration) : base(configuration)
+        public CryptographicBLService(IConfiguration configuration) : base(configuration)
         {
             _redisCacheHandler = new RedisCacheHandler(configuration);
         }
@@ -56,11 +56,12 @@ namespace WebAPIWDapper.BusinessLogic
             //get a random key from the list
             int randomkey = GetRandomNumber();
             string cachekey = keyValuePairs[randomkey];
-            string redisCacheKey = RedisCacheKeys.EncryptionKeys + "-" + cachekey;
-            string key = await _redisCacheHandler.StringGetAsync(redisCacheKey);
+            string key = await _redisCacheHandler.StringGetAsync(cachekey);
             //return the key
             return key;
         }
+
+        #region Private Helpers
         private async Task<bool> RandomlyGenerate5Keys()
         {
             for (int i = 0; i < 10; i++)
@@ -74,7 +75,7 @@ namespace WebAPIWDapper.BusinessLogic
             //TODO: Improve encryption keys using https://learn.microsoft.com/en-us/dotnet/standard/security/generating-keys-for-encryption-and-decryption
             EncryptionKeysService encryptionKeysService = new EncryptionKeysService(_dbService);
             EncryptionKey encryptionKey = new EncryptionKey();
-            encryptionKey.KeyString = new Guid().ToString();
+            encryptionKey.KeyString = GenerateKey();
             encryptionKey.ExpiryDate = DateTime.Now.AddDays(GetRandomNumber());
             await encryptionKeysService.AddKey(encryptionKey);
             return true;
@@ -82,8 +83,28 @@ namespace WebAPIWDapper.BusinessLogic
         private int GetRandomNumber()
         {
             var random = new Random();
-            return random.Next(10);
+            int resultValue = 0;
+            while (resultValue == 0 || resultValue == 10)
+            {
+                resultValue = random.Next(10);
+            }
+            return resultValue;
         }
-            
+        private string GenerateKey()
+        {
+            string key = "";
+            int keyLength = 32;
+            while (key.Length < keyLength)
+            {
+                key += Guid.NewGuid().ToString().Replace("-", "");
+                Console.WriteLine($"Key Length: {key.Length}");
+            }
+            if (key.Length > keyLength)
+            {
+                key = key.Substring(0, keyLength);
+            }
+            return key;
+        }
+        #endregion
     }
 }

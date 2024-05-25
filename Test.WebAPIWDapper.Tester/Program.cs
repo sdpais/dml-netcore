@@ -80,10 +80,10 @@ namespace WebAPIWDapper.Tester
             DbService dbService = new DbService(configuration);
             CryptographicService encryptionDecryptionService = new CryptographicService(dbService);
             //This error happens because the key size provided for the AES encryption algorithm is not valid. AES encryption requires a key of either 128, 192, or 256 bits.
-            string passwordForKey = Guid.NewGuid().ToString().Replace("-", "");
-            string saltForKey = Guid.NewGuid().ToString().Replace("-", "");
+            //string passwordForKey = Guid.NewGuid().ToString().Replace("-", "");
+            //string saltForKey = Guid.NewGuid().ToString().Replace("-", "");
             string encryptionKey = Generate256BitKey(); // GenerateKeyString(passwordForKey, saltForKey, 256); //"E546C8DF278CD5931069B522E695D4F2";//
-            byte[] encryptionKeyArray = GenerateKeyBytes(passwordForKey, saltForKey, 256);
+            //byte[] encryptionKeyArray = GenerateKeyBytes(passwordForKey, saltForKey, 256);
             string unencryptedText = randomStringofWords;
             string encryptedText = encryptionDecryptionService.EncryptV2(unencryptedText, encryptionKey).Result;
             Console.WriteLine($"Encrypted Text using string: {encryptedText}");
