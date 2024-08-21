@@ -1,4 +1,5 @@
-﻿namespace WebAPIWDapper.Models;
+﻿using System.Text.Json.Serialization;
+namespace WebAPIWDapper.Models;
 public class EncryptionKey
 {
     public int Id { get; set; }

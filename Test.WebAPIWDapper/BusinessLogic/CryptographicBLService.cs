@@ -60,7 +60,13 @@ namespace WebAPIWDapper.BusinessLogic
             //return the key
             return key;
         }
-
+        public async Task<string>? GetEncryptionKeyValueFromCache(int encryptionKey)
+        {
+            string cachekey = RedisCacheKeys.EncryptionKeys + "-" + encryptionKey;
+            string key = await _redisCacheHandler.StringGetAsync(cachekey);
+            //return the key
+            return key;
+        }
         #region Private Helpers
         private async Task<bool> RandomlyGenerate5Keys()
         {

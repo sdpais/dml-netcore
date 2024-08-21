@@ -12,13 +12,13 @@ public class EmployeeService : IEmployeeService
         _dbService = dbService;
     }
 
-    public async Task<bool> CreateEmployee(Employee employee)
+    public async Task<int> CreateEmployee(Employee employee)
     {
         var result =
             await _dbService.EditData(
-                "INSERT INTO public.employees (id,name, age, mobile_number, encryptionkeyid, ssn, createddate) VALUES (@Id, @Name, @Age, @MobileNumber, @encryptionkeyid, @ssn, @createddate)",
+                "INSERT INTO public.employees (name, email, dateofbirth, mobilenumber, encryptionkeyid, ssn, createddate, updateddate) VALUES (@Name, @email, @DateOfBirth, @MobileNumber, @encryptionkeyid, @ssn, @createddate, @updateddate) ; SELECT currval(pg_get_serial_sequence('employees','id'));",
                 employee);
-        return true;
+        return result;
     }
 
     public async Task<List<Employee>> GetEmployeeList()
@@ -30,15 +30,20 @@ public class EmployeeService : IEmployeeService
 
     public async Task<Employee> GetEmployee(int id)
     {
-        var employeeList = await _dbService.GetAsync<Employee>("SELECT * FROM public.employees where id=@id", new {id});
-        return employeeList;
+        var employee = await _dbService.GetAsync<Employee>("SELECT * FROM public.employees where id=@id", new {id});
+        return employee;
+    }
+    public async Task<Employee> GetEmployee(string email)
+    {
+        var employee = await _dbService.GetAsync<Employee>("SELECT * FROM public.employees where email=@email", new { email});
+        return employee;
     }
 
     public async Task<Employee> UpdateEmployee(Employee employee)
     {
         var updateEmployee =
             await _dbService.EditData(
-                "Update public.employees SET name=@Name, age=@Age, mobile_number=@MobileNumber, encryptionkeyid=@encryptionkeyid, ssn=@ssn, createddate=@createddate WHERE id=@Id",
+                "Update public.employees SET name=@Name, email=@email, dateofbirth=@dateofbirth, mobile_number=@MobileNumber, encryptionkeyid=@encryptionkeyid, ssn=@ssn, updateddate=@updateddate WHERE id=@Id",
                 employee);
         return employee;
     }

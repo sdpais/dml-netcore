@@ -1,9 +1,10 @@
 CREATE TABLE  IF NOT EXISTS EncryptionKeys (
-    Id serial PRIMARY KEY NOT NULL, 
+    Id serial NOT NULL, 
     KeyString Varchar (256) NOT NULL,
     ExpiryDate Date,
     ReplacedById INT NULL, 
-    CreatedDate Date NOT NULL DEFAULT CURRENT_DATE
+    CreatedDate Date NOT NULL DEFAULT CURRENT_DATE,
+    CONSTRAINT Pk_EncryptionKeys_id PRIMARY KEY(Id)
 );
 
 ALTER TABLE EncryptionKeys

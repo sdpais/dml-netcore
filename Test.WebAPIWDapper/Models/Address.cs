@@ -1,14 +1,15 @@
 ﻿namespace WebAPIWDapper.Models;
 using System.Text.Json.Serialization;
-public class Login
+public class Address
 {
     [JsonIgnore] 
     public int Id { get; set; }
-    public string? UserName { get; set; }
-    public string? Password { get; set; }
-    
-    [JsonIgnore] 
-    public int EncryptionKeyId { get; set; }
+    public string? Address1 { get; set; }
+    public string? Address2 { get; set; }
+    public string? City { get; set; }
+    public string? Province { get; set; }
+    public string? Country { get; set; }
+
     
     [JsonIgnore] 
     public int? EmployeeId { get; set; }

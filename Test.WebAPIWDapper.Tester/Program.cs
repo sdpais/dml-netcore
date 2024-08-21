@@ -85,9 +85,9 @@ namespace WebAPIWDapper.Tester
             string encryptionKey = Generate256BitKey(); // GenerateKeyString(passwordForKey, saltForKey, 256); //"E546C8DF278CD5931069B522E695D4F2";//
             //byte[] encryptionKeyArray = GenerateKeyBytes(passwordForKey, saltForKey, 256);
             string unencryptedText = randomStringofWords;
-            string encryptedText = encryptionDecryptionService.EncryptV2(unencryptedText, encryptionKey).Result;
+            string encryptedText = encryptionDecryptionService.Encrypt(unencryptedText, encryptionKey).Result;
             Console.WriteLine($"Encrypted Text using string: {encryptedText}");
-            string decryptedText = encryptionDecryptionService.DecryptV2(encryptedText, encryptionKey).Result;
+            string decryptedText = encryptionDecryptionService.Decrypt(encryptedText, encryptionKey).Result;
             Console.WriteLine($"Decrypted Text: {decryptedText}");
 
             //encryptedText = encryptionDecryptionService.Encrypt(unencryptedText, encryptionKeyArray).Result;

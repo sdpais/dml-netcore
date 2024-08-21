@@ -39,7 +39,10 @@ namespace WebAPIWDapper.Controllers
                 _redisCacheHandler.StringSetAsync(user.UserName + ".Token", tokenString, new TimeSpan(0, 0, 60));
                 return Ok(new JWTToken
                 {
-                    Token = tokenString
+                    AccessToken = tokenString,
+                    AccessTokenExpiry = DateTime.Now,
+                    RefreshToken = "",
+                    RefreshTokenExpiry = DateTime.Now
                 });
                 
             }
@@ -62,11 +65,11 @@ namespace WebAPIWDapper.Controllers
             {
                 AuthenticationBLService _authenticationBLService = new AuthenticationBLService(_config);
                 JWTToken?  authToken = await _authenticationBLService.AuthenticateUser(user);
-                if (authToken == null || authToken.Token == null)
+                if (authToken == null || authToken.AccessToken == null)
                 {
                     return Unauthorized();
                 }
-                _redisCacheHandler.StringSetAsync(RedisCacheKeys.UserAuthTokens + user.UserName + ".Token", authToken.Token, new TimeSpan(0, 0, 60));
+                //_redisCacheHandler.StringSetAsync(RedisCacheKeys.UserAuthTokens + user.UserName + ".Token", authToken.AccessToken, new TimeSpan(0, 0, 60));
                 return Ok(authToken);
 
             }
@@ -89,5 +92,11 @@ namespace WebAPIWDapper.Controllers
             return BadRequest();
 
         }
+
+        //TODO
+        //Forgot Password
+        //Update Email & Password
+        //Validate Email
+
     }
 }

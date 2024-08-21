@@ -6,6 +6,8 @@ CREATE TABLE IF NOT EXISTS Addresses (
     Province Varchar(50) NOT NULL,
     Country Varchar(50) NOT NULL,
     EmployeeId INT NOT NULL,
+    CreatedDate Date DEFAULT CURRENT_DATE,
+    UpdatedDate Date DEFAULT CURRENT_DATE,
     CONSTRAINT Pk_Addresses_id PRIMARY KEY(Id)
 );
 

@@ -29,12 +29,12 @@ public class LoginService : ILoginService
     }
     public async Task<List<Login>> GetLogins(string userName)
     {
-        List<Login> logins = await _dbService.GetAll<Login>("SELECT TOP 1 * FROM public.logins where username=@username", new { userName });
+        List<Login> logins = await _dbService.GetAll<Login>("SELECT * FROM public.logins where username=@username", new { userName });
         return logins;
     }
     public async Task<Login?> GetLogin(string userName)
     {
-        Login? login = await _dbService.GetAsync<Login>("SELECT TOP 1 * FROM public.logins where username=@username", new { userName });
+        Login? login = await _dbService.GetAsync<Login>("SELECT * FROM public.logins where username=@username LIMIT 1 ", new { userName });
         return login;
     }
   
@@ -43,7 +43,7 @@ public class LoginService : ILoginService
     {
         var updateLogin =
             await _dbService.EditData(
-                "Update public.logins SET password=@password, name=@userName, EncryptionKeyId=@encryptionKeyId, EmployeeId=@employeeId WHERE Id=@Id",
+                "Update public.logins SET password=@password, username=@userName, EncryptionKeyId=@encryptionKeyId, EmployeeId=@employeeId WHERE Id=@Id",
                 login);
         return login;
     }
