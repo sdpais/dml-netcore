@@ -1,4 +1,5 @@
-using Asp.Versioning;
+ï»¿using Asp.Versioning;
+using rbacapi.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +26,7 @@ builder.Services.AddApiVersioning(option =>
         //"api-version", "X-Version" and "ver" are parameter name to be set with version number in client before request the endpoints.
 }).AddApiExplorer(options =>
 {
-    options.GroupNameFormat = "'v'VVV"; //The say our format of our version number “‘v’major[.minor][-status]”
+    options.GroupNameFormat = "'v'VVV"; //The say our format of our version number ï¿½ï¿½vï¿½major[.minor][-status]ï¿½
     options.SubstituteApiVersionInUrl = true; //This will help us to resolve the ambiguity when there is a routing conflict due to routing template one or more end points are same.
 });
 
@@ -41,5 +42,7 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapClientEndpoints();
 
 app.Run();
