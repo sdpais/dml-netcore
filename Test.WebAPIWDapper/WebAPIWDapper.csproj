@@ -29,4 +29,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Serilog\Serilog.Sinks.PostgreSQL\Serilog.Sinks.PostgreSQL.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -18,14 +18,14 @@ namespace rbacapi.Controllers
 
             return result;
         }
-        [HttpPost(Name = "entities")]
-        [MapToApiVersion("1.0")]
-        public Entity Post([FromBody] Entity entity)
-        {
-            var result = new List<Entity>();
+        //[HttpPost(Name = "entities")]
+        //[MapToApiVersion("1.0")]
+        //public Entity Post([FromBody] Entity entity)
+        //{
+        //    var result = new List<Entity>();
 
-            return result;
-        }
+        //    return result;
+        //}
         [HttpPut(Name = "entities")]
         [MapToApiVersion("1.0")]
         public IEnumerable<Entity> Put()

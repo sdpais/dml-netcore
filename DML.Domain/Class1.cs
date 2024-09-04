@@ -1,4 +1,4 @@
-﻿namespace DML.ConfigServices
+﻿namespace DML.Domain
 {
     public class Class1
     {

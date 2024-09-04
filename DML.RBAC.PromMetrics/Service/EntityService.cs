@@ -1,7 +1,7 @@
 ﻿using DML.PostgresDb.Services;
 using DML.Domain.Entities;
 
-namespace DML.RBAC.Service;
+namespace DML.RBAC.PromMetrics.Service;
 
 
 public class EntityService

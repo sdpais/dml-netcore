@@ -29,8 +29,4 @@
     <PackageReference Include="Serilog" Version="4.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Test.WebAPIWDapper\WebAPIWDapper.csproj" />
-  </ItemGroup>
-
 </Project>
