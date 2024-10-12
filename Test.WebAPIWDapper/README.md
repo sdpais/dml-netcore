@@ -21,6 +21,9 @@ break down to sub services
 Cache using Redis 
 https://zomro.com/blog/faq/301-kak-ustanovit-redis-v-docker
 
+Mongo CRUD
+https://medium.com/@jaydeepvpatil225/mongodb-basics-and-crud-operation-using-net-core-7-web-api-884b5b76549a
+
 
 User SeriLog
 https://www.youtube.com/watch?v=QjO2Jac1uQw

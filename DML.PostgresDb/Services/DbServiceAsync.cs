@@ -3,6 +3,9 @@ using System.Data;
 using Dapper;
 using Npgsql;
 using Microsoft.Extensions.Configuration;
+using DML.PostgresDb.Interfaces;
+using DML.ConfigServices.Interfaces;
+using DML.ConfigServices.Services;
 
 
 namespace DML.PostgresDb.Services;
@@ -14,7 +17,8 @@ public class DbServiceAsync : IDbServiceAsync
 
     public DbServiceAsync(IConfiguration configuration)
     {
-        _db = new NpgsqlConnection(configuration.GetConnectionString("RBACdb"));
+        IWebAPIConfig webAPIConfig = new WebAPIConfig(configuration);
+        _db = new NpgsqlConnection(webAPIConfig.RBACPGConnectionString);
     }
 
     //public async Task<T> GetAsync<T>(string command, object parms)

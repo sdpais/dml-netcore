@@ -7,13 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.1.35" />
-    <PackageReference Include="Dapper.Extensions.PostgreSQL" Version="5.1.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="StackExchange.Redis" Version="2.8.16" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DML.ConfigServices\DML.ConfigServices.csproj" />
-    <ProjectReference Include="..\DML.Domain\DML.Domain.csproj" />
   </ItemGroup>
 
 </Project>

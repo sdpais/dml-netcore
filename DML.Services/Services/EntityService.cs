@@ -1,16 +1,18 @@
 ﻿using DML.PostgresDb.Services;
+using DML.PostgresDb.Interfaces;
 using DML.Domain.Entities;
+using DML.ConfigServices;
+using DML.ConfigServices.Interfaces;
+using Microsoft.Extensions.Configuration;
 
-namespace DML.RBAC.PromMetrics.Service;
+namespace DML.RBAC.Service;
 
 
 public class EntityService
 {
     protected IDbServiceAsync _dbServiceAsync;
-    protected IConfiguration _configuration;
     public EntityService(IConfiguration configuration)
     {
-        _configuration = configuration;
         _dbServiceAsync = new DbServiceAsync(configuration);
     }
     public async Task<Entity> Create(Entity entity)

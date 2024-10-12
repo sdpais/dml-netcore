@@ -15,7 +15,7 @@ namespace WebAPIWDapper.Services
 
             _connectionString = _webAPIConfig.RedisConnectionString;
             _connectionString = _connectionString ?? throw new ArgumentNullException(_connectionString);
-            ConfigurationOptions redisConfigOptions = ConfigurationOptions.Parse("192.168.2.41:6381");
+            ConfigurationOptions redisConfigOptions = ConfigurationOptions.Parse("192.168.4.39:6381");
             //ConfigurationOptions redisConfigOptions = ConfigurationOptions.Parse("192.168.2.40:6380,192.168.2.41:6380");
             redisConfigOptions.Ssl = false;
 //            redisConfigOptions.Password = WebUtility.UrlEncode("ThisSecretNeedstobebreaterthan256charactersinorderforittobeavalidkeyiamtr1@3%67Hd*@thSzxczdcsddsdsad");

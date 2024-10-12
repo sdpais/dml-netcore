@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 using DML.Domain.Entities;
-using DML.RBAC.PromMetrics.Service;
+using prommetrics.Service;
 using static Dapper.SqlMapper;
 //using Serilog;
 
-namespace DML.RBAC.PromMetrics.Controllers;
+namespace prommetrics.Controllers;
 
 [ApiController]
 [Route("api/v1/[controller]")]

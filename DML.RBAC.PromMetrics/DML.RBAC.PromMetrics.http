@@ -1,6 +1,0 @@
-@DML.RBAC.PromMetrics_HostAddress = http://localhost:5010
-
-GET {{DML.RBAC.PromMetrics_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -7,13 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.1.35" />
-    <PackageReference Include="Dapper.Extensions.PostgreSQL" Version="5.1.4" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DML.ConfigServices\DML.ConfigServices.csproj" />
     <ProjectReference Include="..\DML.Domain\DML.Domain.csproj" />
+    <ProjectReference Include="..\DML.MongoDb\DML.MongoDb.csproj" />
+    <ProjectReference Include="..\DML.PostgresDb\DML.PostgresDb.csproj" />
   </ItemGroup>
 
 </Project>

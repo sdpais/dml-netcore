@@ -16,4 +16,17 @@
     <ProjectReference Include="..\DML.PostgresDb\DML.PostgresDb.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SrcRef\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DML.Domain">
+      <HintPath>SrcRef\DML.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="DML.PostgresDb">
+      <HintPath>SrcRef\DML.PostgresDb.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

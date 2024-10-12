@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DML.ConfigServices\DML.ConfigServices.csproj" />
+    <ProjectReference Include="..\DML.Domain\DML.Domain.csproj" />
   </ItemGroup>
 
 </Project>

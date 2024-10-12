@@ -4,14 +4,35 @@ using Prometheus;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using WebAPIWDapper.BusinessLogic;
+using Microsoft.Net.Http.Headers;
 
-
+//var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 CryptographicBLService encryptionBLService = new CryptographicBLService(builder.Configuration);
 //Dapper
 DefaultTypeMap.MatchNamesWithUnderscores = true;
 
+////CORS
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy(name: MyAllowSpecificOrigins,
+//                      policy =>
+//                      {
+//                          policy.WithOrigins("*")
+//                                .WithMethods("PUT", "OPTIONS", "GET");
+
+//                      });
+//    //GET, PUT, POST, DELETE, OPTIONS
+//});
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder => {
+        builder.AllowAnyOrigin();
+        builder.AllowAnyMethod();
+        builder.AllowAnyHeader();
+    });
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -31,6 +52,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -46,7 +68,13 @@ app.UseHttpMetrics(options =>
 {
     options.AddCustomLabel("host", context => context.Request.Host.Host);
 });
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+//app.UseStaticFiles();
+//app.UseRouting();
+
+// configure CORS
+app.UseCors();
+//app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

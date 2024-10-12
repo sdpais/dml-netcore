@@ -31,6 +31,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Serilog\Serilog.Sinks.PostgreSQL\Serilog.Sinks.PostgreSQL.csproj" />
+    <ProjectReference Include="..\DML.Domain\DML.Domain.csproj" />
+    <ProjectReference Include="..\DML.Services\DML.Services.csproj" />
   </ItemGroup>
 
 </Project>

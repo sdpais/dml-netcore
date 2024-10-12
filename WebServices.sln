@@ -32,7 +32,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DML.MongoDb", "DML.MongoDb\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DML.Domain", "DML.Domain\DML.Domain.csproj", "{4637F7CE-28D3-48FC-BCD3-981B46971DF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DML.RBAC.PromMetrics", "DML.RBAC.PromMetrics\DML.RBAC.PromMetrics.csproj", "{82488C13-CFF6-4157-9830-80229FE0B376}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "prommetrics", "prommetrics\prommetrics.csproj", "{DC802F00-C4D3-4E04-8CB8-043027086732}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIWDapper", "Test.WebAPIWDapper\WebAPIWDapper.csproj", "{B9941F34-5450-4233-9010-D74E4AC57B1F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DML.RedisCache", "DML.RedisCache\DML.RedisCache.csproj", "{83A9A719-625D-4AB4-8F05-20F600F5E3EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DML.Services", "DML.Services\DML.Services.csproj", "{25AC31F5-9249-46F2-AC52-1FFCF0DD6527}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,10 +66,22 @@ Global
 		{4637F7CE-28D3-48FC-BCD3-981B46971DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4637F7CE-28D3-48FC-BCD3-981B46971DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4637F7CE-28D3-48FC-BCD3-981B46971DF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{82488C13-CFF6-4157-9830-80229FE0B376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82488C13-CFF6-4157-9830-80229FE0B376}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82488C13-CFF6-4157-9830-80229FE0B376}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{82488C13-CFF6-4157-9830-80229FE0B376}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC802F00-C4D3-4E04-8CB8-043027086732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC802F00-C4D3-4E04-8CB8-043027086732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC802F00-C4D3-4E04-8CB8-043027086732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC802F00-C4D3-4E04-8CB8-043027086732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9941F34-5450-4233-9010-D74E4AC57B1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9941F34-5450-4233-9010-D74E4AC57B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9941F34-5450-4233-9010-D74E4AC57B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9941F34-5450-4233-9010-D74E4AC57B1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83A9A719-625D-4AB4-8F05-20F600F5E3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83A9A719-625D-4AB4-8F05-20F600F5E3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83A9A719-625D-4AB4-8F05-20F600F5E3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83A9A719-625D-4AB4-8F05-20F600F5E3EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25AC31F5-9249-46F2-AC52-1FFCF0DD6527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25AC31F5-9249-46F2-AC52-1FFCF0DD6527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25AC31F5-9249-46F2-AC52-1FFCF0DD6527}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25AC31F5-9249-46F2-AC52-1FFCF0DD6527}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
