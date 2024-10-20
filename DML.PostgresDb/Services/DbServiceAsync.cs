@@ -15,9 +15,9 @@ public class DbServiceAsync : IDbServiceAsync
 {
     private readonly IDbConnection _db;
 
-    public DbServiceAsync(IConfiguration configuration)
+    public DbServiceAsync()
     {
-        IWebAPIConfig webAPIConfig = new WebAPIConfig(configuration);
+        IWebAPIConfig webAPIConfig = new WebAPIConfig();
         _db = new NpgsqlConnection(webAPIConfig.RBACPGConnectionString);
     }
 

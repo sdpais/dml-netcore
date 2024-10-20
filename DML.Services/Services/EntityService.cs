@@ -11,9 +11,9 @@ namespace DML.RBAC.Service;
 public class EntityService
 {
     protected IDbServiceAsync _dbServiceAsync;
-    public EntityService(IConfiguration configuration)
+    public EntityService()
     {
-        _dbServiceAsync = new DbServiceAsync(configuration);
+        _dbServiceAsync = new DbServiceAsync();
     }
     public async Task<Entity> Create(Entity entity)
     {

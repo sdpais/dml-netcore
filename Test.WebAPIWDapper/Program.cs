@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using WebAPIWDapper.BusinessLogic;
 using Microsoft.Net.Http.Headers;
+//using WebAPIWDapper.Security;
+using DML.Security.Services;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 //var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -49,6 +52,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options => builder.Configuration.Bind("JwtSettings", options))
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
         options => builder.Configuration.Bind("CookieSettings", options));
+
+//API Key Security
+//builder.Services.AddScoped<IApiKeyValidator, ApiKeyValidator>();
+//builder.Services.AddScoped<IAuthorizationFilter, ApiKeyAuthFilter>();
+
+//builder.Services.AddTransient<ApiKeyAuthFilter>();
+//builder.Services.AddTransient<IApiKeyValidator, ApiKeyValidator>();
+//builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

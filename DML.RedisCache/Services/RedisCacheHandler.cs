@@ -11,10 +11,10 @@ public class RedisCacheHandler : IRedisCacheHandler
 {
     private IRedisDbProvider _redisDbProvider;
 
-    public RedisCacheHandler(IConfiguration configuration)
+    public RedisCacheHandler()
     {
 
-        _redisDbProvider = new RedisDbProvider(configuration);
+        _redisDbProvider = new RedisDbProvider();
 
         if (_redisDbProvider.Database == null)
         {

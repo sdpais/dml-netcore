@@ -32,7 +32,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Serilog\Serilog.Sinks.PostgreSQL\Serilog.Sinks.PostgreSQL.csproj" />
     <ProjectReference Include="..\DML.Domain\DML.Domain.csproj" />
+    <ProjectReference Include="..\DML.Security\DML.Security.csproj" />
     <ProjectReference Include="..\DML.Services\DML.Services.csproj" />
+    <ProjectReference Include="..\DML.Utilities\DML.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

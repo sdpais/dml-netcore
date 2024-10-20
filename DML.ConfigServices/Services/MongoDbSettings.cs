@@ -10,32 +10,20 @@ namespace DML.ConfigServices.Services;
 
 public class MongoDbSettings : IMongoDbSettings
 {
-    private IConfiguration _configuration { get; }
-    public MongoDbSettings(IConfiguration configuration) {
-        _configuration = configuration;
-    }
     public string ConnectionString {
         get {
-            if (_configuration is null)
-            {
-                throw new ArgumentNullException(nameof(_configuration));
-            }
-            var mongoHost = _configuration.GetValue<string>("MongoDb:Server");
-            var mongoPort = _configuration.GetValue<string>("MongoDb:Port");
-            var mongoUsername = _configuration.GetValue<string>("MongoDb:Username");
-            var mongoPassword = (_configuration.GetValue<string>("MongoDb:Password"));
-            var mongoSSLEnabled = (_configuration.GetValue<string>("MongoDb:SSL"));
+            var mongoHost = ApplicationConfiguration.GetSetting("MongoDb:Server");
+            var mongoPort = ApplicationConfiguration.GetSetting("MongoDb:Port");
+            var mongoUsername = ApplicationConfiguration.GetSetting("MongoDb:Username");
+            var mongoPassword = (ApplicationConfiguration.GetSetting("MongoDb:Password"));
+            var mongoSSLEnabled = (ApplicationConfiguration.GetSetting("MongoDb:SSL"));
             return $"mongodb://{mongoUsername}:{mongoPassword}@{mongoHost}:{mongoPort}/?ssl={mongoSSLEnabled}";
         }
     }
     public string DatabaseName {
         get
         {
-            if (_configuration is null)
-            {
-                throw new ArgumentNullException(nameof(_configuration));
-            }
-            var mongoDatabase = _configuration.GetValue<string>("MongoDb:DatabaseName");
+            var mongoDatabase = ApplicationConfiguration.GetSetting("MongoDb:DatabaseName");
             return mongoDatabase;
         }
     }
@@ -43,11 +31,7 @@ public class MongoDbSettings : IMongoDbSettings
     {
         get
         {
-            if (_configuration is null)
-            {
-                throw new ArgumentNullException(nameof(_configuration));
-            }
-            var mongoCollectionName = _configuration.GetValue<string>("MongoDb:CollectionName");
+            var mongoCollectionName = ApplicationConfiguration.GetSetting("MongoDb:CollectionName");
             return mongoCollectionName;
         }
     }    

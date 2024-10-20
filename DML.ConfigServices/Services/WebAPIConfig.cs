@@ -1,28 +1,17 @@
 ﻿using DML.ConfigServices.Interfaces;
-//using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.IdentityModel.Tokens;
-//using System.Diagnostics.Eventing.Reader;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 namespace DML.ConfigServices.Services;
 
 public class WebAPIConfig : IWebAPIConfig
 {
-    private IConfiguration _configuration { get; }
-    public WebAPIConfig(IConfiguration configuration) 
-    {
-        _configuration = configuration;
-    }
     public string RedisConnectionString
     {
         get
         {
-            if (_configuration is null)
-            {
-                throw new ArgumentNullException(nameof(_configuration));
-            }
-            var redisURL = _configuration.GetValue<string>("Redis:URL");
-            var redisDbPassword = (_configuration.GetValue<string>("Redis:Password"));
+            
+            var redisURL = ApplicationConfiguration.GetSetting("Redis:URL");
+            var redisDbPassword = ApplicationConfiguration.GetSetting("Redis:Password");
             return $"{redisURL},password={redisDbPassword},ssl=False,abortConnect=False";
         }
     }
@@ -31,11 +20,7 @@ public class WebAPIConfig : IWebAPIConfig
     {
         get
         {
-            if (_configuration is null)
-            {
-                throw new ArgumentNullException(nameof(_configuration));
-            }
-            var employeedbConnection = _configuration.GetValue<string>("Employeedb");
+            var employeedbConnection = ApplicationConfiguration.GetSetting("ConnectionStrings:Employeedb");
             
             return employeedbConnection;
         }
@@ -44,11 +29,8 @@ public class WebAPIConfig : IWebAPIConfig
     {
         get
         {
-            if (_configuration is null)
-            {
-                throw new ArgumentNullException(nameof(_configuration));
-            }
-            var rBACdbConnection = _configuration.GetValue<string>("RBACdb");
+
+            var rBACdbConnection = ApplicationConfiguration.GetSetting("ConnectionStrings:RBACdb");
 
             return rBACdbConnection;
         }
@@ -57,11 +39,7 @@ public class WebAPIConfig : IWebAPIConfig
     public SymmetricSecurityKey JWTSecretKey {
         get
         {
-            if (_configuration is null)
-            {
-                throw new ArgumentNullException(nameof(_configuration));
-            }
-            string secretValue = _configuration.GetValue<string>("JWT:Secret");
+            string secretValue = ApplicationConfiguration.GetSetting("JWT:Secret");
             if (secretValue is null)
             {
                 throw new Exception("Configuration is invalid for JWT settings");

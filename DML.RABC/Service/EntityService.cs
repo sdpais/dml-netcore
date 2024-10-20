@@ -1,6 +1,6 @@
 ﻿using DML.PostgresDb.Services;
 using DML.Domain.Entities;
-
+using DML.PostgresDb.Interfaces;
 namespace DML.RBAC.Service;
 
 
@@ -11,7 +11,7 @@ public class EntityService
     public EntityService(IConfiguration configuration)
     {
         _configuration = configuration;
-        _dbServiceAsync = new DbServiceAsync(configuration);
+        _dbServiceAsync = new DbServiceAsync();
     }
     public async Task<Entity> Create(Entity entity)
     {

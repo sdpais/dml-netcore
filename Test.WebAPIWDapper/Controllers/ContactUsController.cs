@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using DML.Domain.Entities;
 using DML.Services;
+using WebAPIWDapper.Security;
 
 namespace WebAPIWDapper.Controllers;
 [ApiController]
@@ -19,6 +20,7 @@ public class ContactUsController : Controller
         //  _redisCacheHandler = new RedisCacheHandler(config);
     }
     [HttpPost]
+    [ApiKey]
     /// <summary>Uset this to add employees</summary>
     public async Task<IActionResult> AddContactUs([FromBody] ContactUs contactUs)
     {

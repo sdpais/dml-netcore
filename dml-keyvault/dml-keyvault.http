@@ -1,0 +1,6 @@
+@dml_keyvault_HostAddress = http://localhost:5246
+
+GET {{dml_keyvault_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

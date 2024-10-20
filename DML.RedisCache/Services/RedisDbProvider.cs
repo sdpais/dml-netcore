@@ -12,18 +12,18 @@ public class RedisDbProvider : IRedisDbProvider
     private bool disposed = false;
     private readonly string _connectionString;
     private WebAPIConfig _webAPIConfig;
-    public RedisDbProvider(IConfiguration configuration)
+    public RedisDbProvider()
     {
-        _webAPIConfig = new WebAPIConfig(configuration);
+        _webAPIConfig = new WebAPIConfig();
 
         _connectionString = _webAPIConfig.RedisConnectionString;
         _connectionString = _connectionString ?? throw new ArgumentNullException(_connectionString);
         ConfigurationOptions redisConfigOptions = ConfigurationOptions.Parse("192.168.2.41:6381");
         //ConfigurationOptions redisConfigOptions = ConfigurationOptions.Parse("192.168.2.40:6380,192.168.2.41:6380");
         redisConfigOptions.Ssl = false;
-//            redisConfigOptions.Password = WebUtility.UrlEncode("ThisSecretNeedstobebreaterthan256charactersinorderforittobeavalidkeyiamtr1@3%67Hd*@thSzxczdcsddsdsad");
+        //              redisConfigOptions.Password = WebUtility.UrlEncode("ThisSecretNeedstobebreaterthan256charactersinorderforittobeavalidkeyiamtr1@3%67Hd*@thSzxczdcsddsdsad");
         redisConfigOptions.AbortOnConnectFail = false;
-        //_lazyConnection = new Lazy<ConnectionMultiplexer>(() => ConnectionMultiplexer.Connect(_connectionString));
+        //              _lazyConnection = new Lazy<ConnectionMultiplexer>(() => ConnectionMultiplexer.Connect(_connectionString));
         _lazyConnection = new Lazy<ConnectionMultiplexer>(() => ConnectionMultiplexer.Connect(redisConfigOptions));
         
         

@@ -15,7 +15,7 @@ namespace DML.MongoDb.Services
         private readonly IMongoCollection<ContactUs> _contactUsCollection;
         public ContactUsMongoService(IConfiguration configuration)
         { 
-            _mongoDbSettings = new MongoDbSettings(configuration);
+            _mongoDbSettings = new MongoDbSettings();
             
             _mongoClient = new MongoClient(_mongoDbSettings.ConnectionString);
             
